@@ -1,0 +1,15 @@
+read expenses list
+read into list
+
+iterate over list multiplying element x by x+1
+
+
+if list[x] + list[y] = 2020:
+    output = list[x] * list[y]
+else:
+    x=x+1
+    y=y+1
+
+print(output)
+
+    
