@@ -9,8 +9,8 @@ with open(file, 'r') as f:
         expenses.append(int(toWrite))
 
 
-for i in range(1, length):
-    for k in range(0, length):
-        if expenses[k] + expenses[i] == 2020:
-            print(expenses[i], " + ", expenses[k], " = 2020")
+for i in range(0, len(expenses)):
+    remaining = 2020 - expenses[i]
 
+    if remaining in expenses:
+        print((remaining, expenses[i]), (remaining * expenses[i]))
