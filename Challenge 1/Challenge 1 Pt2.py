@@ -18,5 +18,5 @@ for i in range(0, len(expenses)):
         # finds what is left after looping through again and removing the 2nd number needed
 
         if secondremain in expenses:
-            print((expenses[i], expenses[k], secondremain), (remaining * expenses[i] * secondremain))
+            print((expenses[i], expenses[k], secondremain), (expenses[i] * expenses[k] * secondremain))
             # should find the final number needed
