@@ -1,4 +1,4 @@
-file = \input
+file = passwords
 
 with open(file, 'r') as f:
 
