@@ -1,29 +1,20 @@
 file = "passwords"
+lines = dict
 pword = []
 reqs = []
-NumberOfInstances = []
-LetterRequired = []
+NumberRange = []
 LowerLimit = []
 UpperLimit = []
 
 with open(file, 'r') as f:
 
     for line in f:
-        pword.append((line.rsplit(":")))
-        reqs.append((line.split(":", 1)))
+        # line.rstrip("\n")
+        lines[line] = (line.split(": "))
 
-    for req in reqs:
-        for i in range(0, len(req)):
-            NumberOfInstances.append(req[i].split(" ", 1))
-            LetterRequired.append(req[i].rsplit(" "))
+    for i in range(0, len(reqs)):
+        reqs.append(lines[i][0])
+        pword[i].append(lines[i][1])
 
-    for j in range(0, len(NumberOfInstances)):
-        LowerLimit.append((NumberOfInstances[j].split("-", 1)))
-        UpperLimit.append((NumberOfInstances[j].rsplit("-")))
-
-    for k in range(0, len(pword)):
-        if pword[k].count((LetterRequired[k])) == NumberOfInstances[k]:
-            print(pword)
-            break
-        else:
-            continue
+    for j in range(0, len(pword)):
+        LowerLimit.append(reqs.partition(""))
