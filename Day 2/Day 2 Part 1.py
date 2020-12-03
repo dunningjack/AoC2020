@@ -1,20 +1,24 @@
 file = "passwords"
-lines = dict
-pword = []
-reqs = []
-NumberRange = []
-LowerLimit = []
-UpperLimit = []
 
 with open(file, 'r') as f:
 
     for line in f:
-        # line.rstrip("\n")
-        lines[line] = (line.split(": "))
+        parts = line.split(" ")
 
-    for i in range(0, len(reqs)):
-        reqs.append(lines[i][0])
-        pword[i].append(lines[i][1])
+    for i in range(0, len(parts)):
+        bounds = parts[0].split("-")
+        LB = bounds[0]
+        UB = bounds[1]
+        search = parts[1].strip(":")
 
-    for j in range(0, len(pword)):
-        LowerLimit.append(reqs.partition(""))
+        count = 0
+        total = 0
+
+        # for j in range(0, len(parts)):
+            # if parts[2][j] == search:
+                # count += 1
+        count = parts[2].count(search)
+
+        if count > int(LB) and count < int(UB):
+            total += 1
+        print(total)
