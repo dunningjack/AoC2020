@@ -1,0 +1,16 @@
+Right 3 down 1
+number of trees collided with
+
+with open("Map", "r") as f:
+
+    for char in line:
+        linesize += 1
+
+
+    while line <= f.lines():
+        for i in range(0, linesize, 3):
+        if char[i] == "#":
+            trees += 1
+        line += 1
+
+
