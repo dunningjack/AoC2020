@@ -1,29 +1,37 @@
-from typing import List
-
 file = "Passports"
 PP = []
-validPP = 0
 
 PP_dict = {'byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid', 'cid'}
-PP_keys = ['byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid', 'cid']
-
+PP_keys = ['byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid',]
 
 with open(file, "r") as f:
-    line = f.readline()
+    lines = f.readlines()
+
 
     def addPP():
-        for line in f:
-            while line != "\n":
-                PP.append(line)
+        x = 0
+        PP.append("")
+        for i in range(0, len(lines)):
+            if lines[i] != "\n":
+                PP[x] += lines[i]
+            else:
+                x += 1
+                PP.append("")
         return PP
 
-    def validatePP(validPP):
+
+    def validatePP():
+        validPP = 0
         for i in range(0, len(PP)):
-            check = any(item in PP_keys for item in PP[i])
-            if check is True:
+            count = 0
+            for j in range(0, len(PP_keys)):
+                if PP_keys[j] in PP[i]:
+                    count += 1
+            if count == 7:
                 validPP += 1
+
         return validPP
 
-    addPP()
-    validPP
-print(validPP)
+addPP()
+validatePP()
+print(validatePP())
