@@ -1,7 +1,7 @@
 file = "Passports"
 PP = []
 
-PP_dict = {'byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid', 'cid'}
+PP_dict = {'byr':[], 'iyr':[], 'eyr':[], 'hgt':[], 'hcl':[], 'ecl':[], 'pid':[], 'cid':[]}
 PP_keys = ['byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid',]
 
 with open(file, "r") as f:
@@ -13,12 +13,13 @@ with open(file, "r") as f:
         PP.append("")
         for i in range(0, len(lines)):
             if lines[i] != "\n":
-                PP[x] += lines[i]
+                PP[x] += lines[i].strip() + " "
             else:
                 x += 1
                 PP.append("")
         return PP
 
+    PP = addPP()
 
     def validatePP():
         validPP = 0
@@ -32,6 +33,19 @@ with open(file, "r") as f:
 
         return validPP
 
+    validPP = validatePP()
+
+    def checkEntries():
+        for i in range(0, len(PP)):
+            splitPP = PP[i].split(" ")
+            for j in range(0, len(splitPP)):
+                checkkey = splitPP[j].split(":", 0)
+                checkvalue = splitPP[j].split(":", 1)
+            
+
+
 addPP()
 validatePP()
+checkEntries()
+
 print(validatePP())
