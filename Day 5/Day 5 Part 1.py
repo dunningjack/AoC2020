@@ -44,7 +44,7 @@ with open("Seats", 'r') as f:
                     rowlen = len(columns)
                     pos = columns[rowlen - 1]
                 else:
-                    LB = int(k / 2)
+                    LB = int((k / 2) - 1)
                     UB = k
                     del columns[0:LB]
                     rowlen = len(columns)
@@ -72,9 +72,9 @@ with open("Seats", 'r') as f:
     columnfinder()
     seatIdent()
 
-print(seatIdent())
-# def sorter():
-# seatID.sort(reverse=True)
-# return seatID
 
-# print(sorter())
+def sorter():
+    seatID.sort(reverse=True)
+    return seatID
+
+print(sorter())
