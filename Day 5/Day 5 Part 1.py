@@ -1,18 +1,32 @@
 with open("Seats", 'r') as f:
-    seatlist = f.readlines()
+    lines = f.readlines()
+    seatlist = []
+    for i in range(0, len(lines)):
+        seatlist.append(lines[i].strip())
+
 
     def rowfinder():
         seatrow = []
         for i in range(0, len(seatlist)):
             rows = []
             rows.extend(range(0, 127))
-            k = 127
-            for j in range(0, 9):
+            # fills 128 indices with number
+            k = int(128)
+            for j in range(0, 6):
                 if seatlist[i][j] == "F":
-                    del rows[63:127]
+                    LB = int(k / 2)
+                    UB = k
+                    del rows[LB:UB]
+                    rowlen = len(rows)
+                    pos = rows[rowlen - 1]
                 else:
-                    del rows[0:63]
-                seatrow.append(rows[j])
+                    LB = int(k / 2)
+                    UB = k
+                    del rows[0:LB]
+                    rowlen = len(rows)
+                    pos = rows[rowlen - 1]
+                k = rowlen
+            seatrow.append(pos)
         return seatrow
 
 
@@ -20,20 +34,47 @@ with open("Seats", 'r') as f:
         seatcolumn = []
         for i in range(0, len(seatlist)):
             columns = []
-            columns.extend(range(0,7))
-            for j in range(0, 9):
+            columns.extend(range(0, 7))
+            k = int(6)
+            for j in range(7, 9):
                 if seatlist[i][j] == "L":
-                    del columns[3:7]
+                    LB = int(k / 2)
+                    UB = k
+                    del columns[LB:UB]
+                    rowlen = len(columns)
+                    pos = columns[rowlen - 1]
                 else:
-                    del columns[0:3]
-                seatcolumn.append(columns[j])
+                    LB = int(k / 2)
+                    UB = k
+                    del columns[0:LB]
+                    rowlen = len(columns)
+                    pos = columns[rowlen - 1]
+                k = rowlen
+            seatcolumn.append(pos)
         return seatcolumn
 
-seatrow = rowfinder()
-seatcolumn = columnfinder()
+
+    def seatIdent():
+        seatID = []
+        for i in range(0, len(seatrow)):
+            row = seatrow[i] * 8
+            col = seatcolumn[i]
+            ID = row + col
+            seatID.append(ID)
+        return seatID
 
 
-rowfinder()
-columnfinder()
-for i in range(0, len(rowfinder())):
-    print(seatrow[i], seatcolumn[i])
+    seatrow = rowfinder()
+    seatcolumn = columnfinder()
+    seatID = seatIdent()
+
+    rowfinder()
+    columnfinder()
+    seatIdent()
+
+print(seatIdent())
+# def sorter():
+# seatID.sort(reverse=True)
+# return seatID
+
+# print(sorter())
